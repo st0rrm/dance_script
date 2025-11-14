@@ -102,13 +102,4 @@ def create_three_videos(
     print(f"- Overlay: {out_overlay}")
 
 
-# 이 코드로 영상, 스켈레톤, 영상 + 스켈레톤이 가능
 
-video_path = "./content/IDEA_RUN_DEMO_1.mp4"
-pose_json = "./content/dance_main_pose_with_vecs.json"
-
-create_three_videos(video_path, pose_json,
-    out_original="video_original.mp4",
-    out_skeleton="video_skeleton.mp4",
-    out_overlay="video_overlay.mp4"
-)

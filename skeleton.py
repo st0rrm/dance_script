@@ -223,10 +223,3 @@ def add_pose_vecs_to_json(json_path, out_json_path=None):
     print(f"[OK] pose_vec added & saved to: {out_json_path}")
     return out_json_path
 
-video_path = "./content/IDEA_RUN_DEMO_1.mp4"    # 업로드한 영상
-json_out_path = "./content/dance_main_pose.json"
-
-extract_pose_from_video(video_path, json_out_path, sample_stride=1)
-
-pose_json_path = "./content/dance_main_pose.json"
-pose_vec_json_path = add_pose_vecs_to_json(pose_json_path)

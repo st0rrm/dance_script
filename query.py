@@ -1,23 +1,35 @@
 from skeleton import extract_pose_from_video, add_pose_vecs_to_json
 from extract_video import create_three_videos
 
+# --------------------------
+# 변수 하나만 바꾸면 됨
+# --------------------------
+dance_id = 7  # 숫자만 바꾸면 모든 파일명이 자동 변경됨
 
+# --------------------------
+# 경로 자동 formatting
+# --------------------------
+video_path = f"./content/IDEA_RUN_DEMO_{dance_id}.mp4"
+json_out_path = f"./skeleton_json/{dance_id}_dance_main_pose.json"
+pose_vec_json_path = f"./skeleton_json/{dance_id}_dance_main_pose_with_vecs.json"
 
-video_path = "./content/IDEA_RUN_DEMO_4.mp4"    # 업로드한 영상
-json_out_path = "./skeleton_json/4_dance_main_pose.json"
-
+# --------------------------
+# 1) 스켈레톤 JSON 추출
+# --------------------------
 extract_pose_from_video(video_path, json_out_path, sample_stride=1)
 
-pose_json_path = json_out_path
-pose_vec_json_path = add_pose_vecs_to_json(pose_json_path)
+# --------------------------
+# 2) pose_vec 넣은 JSON 저장
+# --------------------------
+pose_vec_json_path = add_pose_vecs_to_json(json_out_path)
 
-
-# 이 코드로 영상, 스켈레톤, 영상 + 스켈레톤이 가능
-
-pose_json = "./skeleton_json/4_dance_main_pose_with_vecs.json"
-
-create_three_videos(video_path, pose_json,
-    out_original="./created_video/4_original.mp4",
-    out_skeleton="./created_video/4_skeleton.mp4",
-    out_overlay="./created_video/4_overlay.mp4"
+# --------------------------
+# 3) 세 가지 영상 생성
+# --------------------------
+create_three_videos(
+    video_path,
+    pose_vec_json_path,
+    out_original=f"./created_video/{dance_id}_original.mp4",
+    out_skeleton=f"./created_video/{dance_id}_skeleton.mp4",
+    out_overlay=f"./created_video/{dance_id}_overlay.mp4"
 )
